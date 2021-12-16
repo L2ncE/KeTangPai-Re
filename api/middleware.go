@@ -2,7 +2,7 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
-	"message-board/tool"
+	"ketangpai/tool"
 )
 
 func auth(ctx *gin.Context) {

@@ -3,9 +3,9 @@ package api
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"message-board/model"
-	"message-board/service"
-	"message-board/tool"
+	"ketangpai/model"
+	"ketangpai/service"
+	"ketangpai/tool"
 )
 
 func changePassword(ctx *gin.Context) {
