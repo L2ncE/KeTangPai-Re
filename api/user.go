@@ -13,7 +13,7 @@ func changePassword(ctx *gin.Context) {
 	newPassword := ctx.PostForm("new_password")
 	iUsername, _ := ctx.Get("username")
 	l1 := len([]rune(newPassword))
-	if l1 <= 16 {
+	if l1 <= 16 { //强制规定密码小于16位
 		username := iUsername.(string)
 
 		//检验旧密码是否正确
@@ -50,6 +50,7 @@ func login(ctx *gin.Context) {
 
 	flag, err := service.IsPasswordCorrect(username, password)
 	if err != nil {
+		//密码错误
 		fmt.Println("judge password correct err: ", err)
 		tool.RespInternalError(ctx)
 		return
@@ -73,7 +74,7 @@ func login(ctx *gin.Context) {
 		}
 		return
 	}
-
+	//设置cookie
 	ctx.SetCookie("username", username, 600, "/", "", false, false)
 	tool.RespSuccessful(ctx)
 }
@@ -83,11 +84,12 @@ func register(ctx *gin.Context) {
 	password := ctx.PostForm("password")
 	question := ctx.PostForm("question")
 	answer := ctx.PostForm("answer")
+	//输入信息不能为空
 	if username != "" && password != "" && question != "" && answer != "" {
 		l1 := len([]rune(username))
 		l2 := len([]rune(password))
-		if l1 <= 8 {
-			if l2 <= 16 {
+		if l1 <= 8 { //强制规定用户名长度小于8位
+			if l2 <= 16 { //强制规定密码小于16位
 				user := model.User{
 					Name:     username,
 					Password: password,
