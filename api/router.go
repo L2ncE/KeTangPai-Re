@@ -16,21 +16,18 @@ func InitEngine() {
 		userGroup.POST("/password", changePassword) //修改密码
 	}
 
-	postGroup := engine.Group("/post")
+	topicGroup := engine.Group("/topic")
 	{
 		{
-			postGroup.Use(auth)
-			postGroup.POST("/", addPost)              //发布新留言
-			postGroup.POST("/:post_id", changePost)   //修改留言
-			postGroup.DELETE("/:post_id", deletePost) //删除留言
+			topicGroup.Use(auth)
+			topicGroup.POST("/", addTopic)               //发布新留言
+			topicGroup.POST("/:topic_id", changeTopic)   //修改留言
+			topicGroup.DELETE("/:topic_id", deleteTopic) //删除留言
 
-			postGroup.GET("/", briefPosts)         //查看全部留言概略
-			postGroup.GET("/:post_id", postDetail) //查看一条留言详细信息和其下属评论
+			topicGroup.GET("/", briefTopics)          //查看全部留言概略
+			topicGroup.GET("/:topic_id", topicDetail) //查看一条留言详细信息和其下属评论
 
-			engine.MaxMultipartMemory = 8 << 20
-			postGroup.POST("/file", uploadFile) ////上传文章功能
-
-			postGroup.POST("/:post_id/likes", postLikes)
+			topicGroup.POST("/:topic_id/likes", topicLikes)
 		}
 	}
 
