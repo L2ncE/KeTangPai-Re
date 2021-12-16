@@ -1,5 +1,7 @@
 # ketangpai项目
 
+CREATE DATABASE TEXT
+
 - [ ] 账号注册登录注销
 - [ ] 创建课堂,布置作业
 - [ ] 上传-下载课件资料
