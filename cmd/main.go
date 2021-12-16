@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"message-board/api"
-	"message-board/dao"
+	"ketangpai/api"
+	"ketangpai/dao"
 )
 
 func main() {
