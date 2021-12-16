@@ -1,8 +1,8 @@
-# ketangpai项目
+# 课堂派项目-CSAGolang后端考核
 
-CREATE DATABASE TEXT
+### 功能列表
 
-- [ ] 账号注册登录注销
+- [x] 账号注册登录注销
 - [ ] 创建课堂,布置作业
 - [ ] 上传-下载课件资料
 - [ ] 发布话题-话题讨论
@@ -24,3 +24,48 @@ CREATE DATABASE TEXT
 - [ ] RPC和MQ
 - [ ] 高并发
 - [ ] 微服务
+
+### 功能介绍与实现思路
+
+
+
+
+
+
+
+### 数据库相关代码
+
+##### 创建数据库"text" (这个数据库的名字很草率,主要是代码里面不好改)
+
+```bash
+CREATE DATABASE test
+```
+
+##### mysql建表
+
+*用户表*
+
+```mysql
+CREATE TABLE `User` (
+    `Id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `Name` VARCHAR(20) DEFAULT '',
+    `Password` VARCHAR(20) DEFAULT '123456',
+    `Question` VARCHAR(255) DEFAULT NULL,
+    `Answer` VARCHAR(255) DEFAULT NULL,
+    PRIMARY KEY(`Id`)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+```
+
+*话题表*
+
+```mysql
+CREATE TABLE `topic` (
+                        `Id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+                        `Name` VARCHAR(20) DEFAULT '',
+                        `Context` VARCHAR(255) DEFAULT NULL,
+                        `PostTime` datetime DEFAULT NULL,
+                        `UpdateTime` datetime DEFAULT NULL,
+                        PRIMARY KEY(`Id`)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+```
+
