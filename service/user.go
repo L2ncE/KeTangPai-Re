@@ -2,8 +2,8 @@ package service
 
 import (
 	"database/sql"
-	"message-board/dao"
-	"message-board/model"
+	"ketangpai/dao"
+	"ketangpai/model"
 )
 
 // ChangePassword 修改密码服务
