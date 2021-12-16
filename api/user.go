@@ -59,9 +59,7 @@ func login(ctx *gin.Context) {
 		tool.RespErrorWithDate(ctx, "登陆失败,请输入密保")
 		answer := ctx.PostForm("answer")
 		if answer == service.SelectAnswerByUsername(username) {
-			ctx.JSON(200, gin.H{
-				"msg": "密保正确,请重新输入密码",
-			})
+			tool.RespErrorWithDate(ctx, "密保正确,请重新输入密码")
 			newPassword := ctx.PostForm("new_password")
 			err = service.ChangePassword(username, newPassword)
 			if err != nil {
