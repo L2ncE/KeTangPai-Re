@@ -1,5 +1,4 @@
-module message-board
-
+module ketangpai
 go 1.17
 
 require (

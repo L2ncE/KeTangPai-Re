@@ -2,7 +2,7 @@ package dao
 
 import (
 	"fmt"
-	"message-board/model"
+	"ketangpai/model"
 	"time"
 )
 
