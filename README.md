@@ -27,12 +27,6 @@
 
 ### 功能介绍与实现思路
 
-
-
-
-
-
-
 ### 数据库相关代码
 
 ##### 创建数据库"text" (这个数据库的名字很草率,主要是代码里面不好改)
@@ -46,26 +40,32 @@ CREATE DATABASE test
 *用户表*
 
 ```mysql
-CREATE TABLE `User` (
-    `Id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-    `Name` VARCHAR(20) DEFAULT '',
-    `Password` VARCHAR(20) DEFAULT '123456',
+CREATE TABLE `User`
+(
+    `Id`       BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `Name`     VARCHAR(20)  DEFAULT '',
+    `Password` VARCHAR(20)  DEFAULT '123456',
     `Question` VARCHAR(255) DEFAULT NULL,
-    `Answer` VARCHAR(255) DEFAULT NULL,
-    PRIMARY KEY(`Id`)
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+    `Answer`   VARCHAR(255) DEFAULT NULL,
+    PRIMARY KEY (`Id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8mb4;
 ```
 
 *话题表*
 
 ```mysql
-CREATE TABLE `topic` (
-                        `Id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-                        `Name` VARCHAR(20) DEFAULT '',
-                        `Context` VARCHAR(255) DEFAULT NULL,
-                        `PostTime` datetime DEFAULT NULL,
-                        `UpdateTime` datetime DEFAULT NULL,
-                        PRIMARY KEY(`Id`)
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `topic`
+(
+    `Id`         BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `Name`       VARCHAR(20)  DEFAULT '',
+    `Context`    VARCHAR(255) DEFAULT NULL,
+    `PostTime`   datetime     DEFAULT NULL,
+    `UpdateTime` datetime     DEFAULT NULL,
+    PRIMARY KEY (`Id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8mb4;
 ```
 
