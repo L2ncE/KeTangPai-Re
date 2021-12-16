@@ -85,44 +85,48 @@ func register(ctx *gin.Context) {
 	password := ctx.PostForm("password")
 	question := ctx.PostForm("question")
 	answer := ctx.PostForm("answer")
+	if username != "" && password != "" && question != "" && answer != "" {
+		l1 := len([]rune(username))
+		l2 := len([]rune(password))
+		if l1 <= 8 {
+			if l2 <= 16 {
+				user := model.User{
+					Name:     username,
+					Password: password,
+					Question: question,
+					Answer:   answer,
+				}
 
-	l1 := len([]rune(username))
-	l2 := len([]rune(password))
-	if l1 <= 8 {
-		if l2 <= 16 {
-			user := model.User{
-				Name:     username,
-				Password: password,
-				Question: question,
-				Answer:   answer,
-			}
+				flag, err := service.IsRepeatUsername(username)
+				if err != nil {
+					fmt.Println("judge repeat username err: ", err)
+					tool.RespInternalError(ctx)
+					return
+				}
 
-			flag, err := service.IsRepeatUsername(username)
-			if err != nil {
-				fmt.Println("judge repeat username err: ", err)
-				tool.RespInternalError(ctx)
+				if flag {
+					tool.RespErrorWithDate(ctx, "用户名已经存在")
+					return
+				}
+
+				err = service.Register(user)
+				if err != nil {
+					fmt.Println("register err: ", err)
+					tool.RespInternalError(ctx)
+					return
+				}
+
+				tool.RespSuccessful(ctx)
+			} else {
+				tool.RespErrorWithDate(ctx, "密码请在16位之内")
 				return
 			}
-
-			if flag {
-				tool.RespErrorWithDate(ctx, "用户名已经存在")
-				return
-			}
-
-			err = service.Register(user)
-			if err != nil {
-				fmt.Println("register err: ", err)
-				tool.RespInternalError(ctx)
-				return
-			}
-
-			tool.RespSuccessful(ctx)
 		} else {
-			tool.RespErrorWithDate(ctx, "密码请在16位之内")
+			tool.RespErrorWithDate(ctx, "用户名请在8位之内")
 			return
 		}
 	} else {
-		tool.RespErrorWithDate(ctx, "用户名请在8位之内")
+		tool.RespErrorWithDate(ctx, "请将信息输入完整")
 		return
 	}
 }
