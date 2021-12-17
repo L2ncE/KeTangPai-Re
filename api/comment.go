@@ -15,11 +15,11 @@ func addComment(ctx *gin.Context) {
 	Name := iUsername.(string)
 
 	context := ctx.PostForm("context")
-	postIdString := ctx.PostForm("post_id")
-	topicId, err := strconv.Atoi(postIdString)
+	topicIdString := ctx.PostForm("topic_id")
+	topicId, err := strconv.Atoi(topicIdString)
 	if err != nil {
-		fmt.Println("post id string to int err: ", err)
-		tool.RespErrorWithDate(ctx, "文章id有误")
+		fmt.Println("topic id string to int err: ", err)
+		tool.RespErrorWithDate(ctx, "话题id有误")
 		return
 	}
 
@@ -39,19 +39,20 @@ func addComment(ctx *gin.Context) {
 	tool.RespSuccessful(ctx)
 }
 
+// addCommentAnonymity 匿名评论
 func addCommentAnonymity(ctx *gin.Context) {
 	Name := "Anonymity"
 	context := ctx.PostForm("context")
-	postIdString := ctx.PostForm("post_id")
-	postId, err := strconv.Atoi(postIdString)
+	topicIdString := ctx.PostForm("topic_id")
+	topicId, err := strconv.Atoi(topicIdString)
 	if err != nil {
-		fmt.Println("post id string to int err: ", err)
-		tool.RespErrorWithDate(ctx, "文章id有误")
+		fmt.Println("topic id string to int err: ", err)
+		tool.RespErrorWithDate(ctx, "话题id有误")
 		return
 	}
 
 	comment := model.Comment{
-		TopicId:     postId,
+		TopicId:     topicId,
 		Context:     context,
 		Name:        Name,
 		CommentTime: time.Now(),
