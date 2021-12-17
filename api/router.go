@@ -31,6 +31,18 @@ func InitEngine() {
 		}
 	}
 
+	commentGroup := engine.Group("/comment")
+	{
+		commentGroup.POST("/anonymity", addCommentAnonymity) //匿名评论
+		{
+			commentGroup.Use(auth)
+			commentGroup.POST("/", addComment)                 //发送评论
+			commentGroup.DELETE("/:comment_id", deleteComment) //删除评论
+
+			commentGroup.POST("/:comment_id/likes", commentLikes)
+		}
+	}
+
 	err := engine.Run()
 	if err != nil {
 		return
