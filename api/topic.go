@@ -105,7 +105,7 @@ func deleteTopic(ctx *gin.Context) {
 
 func changeTopic(ctx *gin.Context) {
 	newTopic := ctx.PostForm("newTopic")
-	iTopicId := ctx.PostForm("topic_id")
+	iTopicId := ctx.Param("topic_id")
 	topicId, err := strconv.Atoi(iTopicId)
 	UpdateTime := time.Now()
 	topicNameString, _ := ctx.Get("username")
