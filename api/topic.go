@@ -7,7 +7,6 @@ import (
 	"ketangpai/model"
 	"ketangpai/service"
 	"ketangpai/tool"
-	"net/http"
 	"strconv"
 	"time"
 )
@@ -40,8 +39,8 @@ func topicDetail(ctx *gin.Context) {
 	}
 
 	var topicDetail model.TopicDetail
-	TopicDetail.Topic = topic
-	TopicDetail.Comments = comments
+	topicDetail.Topic = topic
+	topicDetail.Comments = comments
 
 	fmt.Println("123")
 	tool.RespSuccessfulWithDate(ctx, topicDetail)
