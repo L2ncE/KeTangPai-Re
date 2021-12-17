@@ -58,14 +58,31 @@ CREATE TABLE `User`
 ```mysql
 CREATE TABLE `topic`
 (
-    `Id`         BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `Id`         BIGINT(20)             NOT NULL AUTO_INCREMENT,
     `Name`       VARCHAR(20)  DEFAULT '',
     `Context`    VARCHAR(255) DEFAULT NULL,
     `PostTime`   datetime     DEFAULT NULL,
     `UpdateTime` datetime     DEFAULT NULL,
+    `Likes`      bigint       default 0 null,
     PRIMARY KEY (`Id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8mb4;
 ```
 
+*评论表*
+
+```mysql
+CREATE TABLE `Comment`
+(
+    `Id`          BIGINT(20)             NOT NULL AUTO_INCREMENT,
+    `TopicId`     BIGINT(20)             NOT NULL,
+    `Name`        VARCHAR(20)  DEFAULT '',
+    `Context`     VARCHAR(255) DEFAULT NULL,
+    `CommentTime` datetime     DEFAULT NULL,
+    `Likes`       bigint       default 0 null,
+    PRIMARY KEY (`Id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8mb4;
+```
