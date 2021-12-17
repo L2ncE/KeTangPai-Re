@@ -9,8 +9,8 @@ func AddComment(comment model.Comment) error {
 	return dao.InsertComment(comment)
 }
 
-func GetPostComments(postId int) ([]model.Comment, error) {
-	return dao.SelectCommentByPostId(postId)
+func GetTopicComments(topicId int) ([]model.Comment, error) {
+	return dao.SelectCommentByTopicId(topicId)
 }
 
 func DeleteComment(Id int) error {
