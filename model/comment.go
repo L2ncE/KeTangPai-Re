@@ -8,4 +8,5 @@ type Comment struct {
 	Context     string
 	Name        string
 	CommentTime time.Time
+	Likes       int
 }
