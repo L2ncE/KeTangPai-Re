@@ -5,6 +5,7 @@ import (
 	"ketangpai/tool"
 )
 
+//cookie 中间件
 func auth(ctx *gin.Context) {
 	username, err := ctx.Cookie("username")
 	if err != nil {
