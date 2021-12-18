@@ -53,7 +53,7 @@ func DeleteComment(Id int) error {
 func SelectNameById2(commentId int) (string, error) {
 	var comment model.Comment
 
-	row := dB.QueryRow("SELECT Id FROM comment WHERE id = ? ", commentId)
+	row := dB.QueryRow("SELECT Name FROM comment WHERE id = ? ", commentId)
 	if row.Err() != nil {
 		return comment.Name, row.Err()
 	}
