@@ -8,6 +8,7 @@ import (
 	"ketangpai/tool"
 )
 
+// changePassword 改密码
 func changePassword(ctx *gin.Context) {
 	oldPassword := ctx.PostForm("old_password")
 	newPassword := ctx.PostForm("new_password")
@@ -44,6 +45,7 @@ func changePassword(ctx *gin.Context) {
 	}
 }
 
+// login 登录
 func login(ctx *gin.Context) {
 	username := ctx.PostForm("username")
 	password := ctx.PostForm("password")
@@ -55,7 +57,7 @@ func login(ctx *gin.Context) {
 		tool.RespInternalError(ctx)
 		return
 	}
-
+	//密保判断 能用,不过显示有点小问题
 	if !flag {
 		tool.RespErrorWithDate(ctx, "登陆失败,请输入密保")
 		answer := ctx.PostForm("answer")
@@ -79,6 +81,7 @@ func login(ctx *gin.Context) {
 	tool.RespSuccessful(ctx)
 }
 
+// register 注册
 func register(ctx *gin.Context) {
 	username := ctx.PostForm("username")
 	password := ctx.PostForm("password")
