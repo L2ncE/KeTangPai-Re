@@ -19,16 +19,14 @@ func InitEngine() {
 	topicGroup := engine.Group("/topic")
 	{
 		{
-			topicGroup.Use(auth)                         //需要cookie
-			topicGroup.POST("/", addTopic)               //发布新话题
-			topicGroup.POST("/:topic_id", changeTopic)   //修改话题
-			topicGroup.DELETE("/:topic_id", deleteTopic) //删除话题
-
-			topicGroup.GET("/", briefTopics)          //查看全部话题概略
-			topicGroup.GET("/:topic_id", topicDetail) //查看一条话题详细信息和其下属评论
-
+			topicGroup.Use(auth)                            //需要cookie
+			topicGroup.POST("/", addTopic)                  //发布新话题
+			topicGroup.POST("/:topic_id", changeTopic)      //修改话题
+			topicGroup.DELETE("/:topic_id", deleteTopic)    //删除话题
 			topicGroup.POST("/:topic_id/likes", topicLikes) //给话题点赞
 		}
+		topicGroup.GET("/", briefTopics)          //查看全部话题概略
+		topicGroup.GET("/:topic_id", topicDetail) //查看一条话题详细信息和其下属评论
 	}
 
 	commentGroup := engine.Group("/comment")
