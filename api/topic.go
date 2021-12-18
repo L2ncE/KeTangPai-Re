@@ -11,8 +11,9 @@ import (
 	"time"
 )
 
+// topicDetail 话题详细信息和其下属评论
 func topicDetail(ctx *gin.Context) {
-	topicIdString := ctx.Param("topic_id")
+	topicIdString := ctx.Param("topic_id") //输入话题id
 	topicId, err := strconv.Atoi(topicIdString)
 	if err != nil {
 		fmt.Println("topic id string to int err: ", err)
@@ -42,7 +43,6 @@ func topicDetail(ctx *gin.Context) {
 	topicDetail.Topic = topic
 	topicDetail.Comments = comments
 
-	fmt.Println("123")
 	tool.RespSuccessfulWithDate(ctx, topicDetail)
 }
 
@@ -57,8 +57,9 @@ func briefTopics(ctx *gin.Context) {
 	tool.RespSuccessfulWithDate(ctx, topics)
 }
 
+// addTopic 添加评论
 func addTopic(ctx *gin.Context) {
-	iUsername, _ := ctx.Get("username")
+	iUsername, _ := ctx.Get("username") //得到用户名
 	name := iUsername.(string)
 
 	context := ctx.PostForm("context")
@@ -80,11 +81,13 @@ func addTopic(ctx *gin.Context) {
 	tool.RespSuccessful(ctx)
 }
 
+// deleteTopic 删除话题
 func deleteTopic(ctx *gin.Context) {
 	topicIdString := ctx.Param("topic_id")
 	topicId, err := strconv.Atoi(topicIdString)
 	topicNameString, _ := ctx.Get("username")
 	nameString, _ := service.GetNameById(topicId)
+	//必须用户名相同,无法删除他人话题
 	if topicNameString == nameString {
 		if err != nil {
 			fmt.Println("topic id string to int err: ", err)
@@ -103,12 +106,14 @@ func deleteTopic(ctx *gin.Context) {
 	}
 }
 
+// changeTopic 更改话题
 func changeTopic(ctx *gin.Context) {
 	newTopic := ctx.PostForm("newTopic")
 	iTopicId := ctx.Param("topic_id")
 	topicId, err := strconv.Atoi(iTopicId)
 	UpdateTime := time.Now()
 	topicNameString, _ := ctx.Get("username")
+	//只能更改自己的话题
 	nameString, _ := service.GetNameById(topicId)
 	if topicNameString == nameString {
 		if err != nil {
@@ -116,6 +121,7 @@ func changeTopic(ctx *gin.Context) {
 			tool.RespErrorWithDate(ctx, "topic_id格式有误")
 			return
 		} else {
+			//更改后会更新时间
 			err := service.ChangeTopic(topicId, newTopic, UpdateTime)
 			if err != nil {
 				fmt.Println("change topic err: ", err)
@@ -129,6 +135,7 @@ func changeTopic(ctx *gin.Context) {
 	}
 }
 
+// topicLikes 话题点赞
 func topicLikes(ctx *gin.Context) {
 	topicIdString := ctx.Param("topic_id")
 	topicId, err := strconv.Atoi(topicIdString)
@@ -146,10 +153,11 @@ func topicLikes(ctx *gin.Context) {
 	tool.RespSuccessful(ctx)
 }
 
+// deleteTopic0 管理员删除话题
 func deleteTopic0(ctx *gin.Context) {
 	topicIdString := ctx.Param("topic_id")
 	topicId, err := strconv.Atoi(topicIdString)
-
+	//无需判断用户名
 	if err != nil {
 		fmt.Println("topic id string to int err: ", err)
 		tool.RespErrorWithDate(ctx, "topic_id格式有误")
