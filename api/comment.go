@@ -86,7 +86,7 @@ func deleteComment(ctx *gin.Context) {
 		}
 		tool.RespSuccessful(ctx)
 	} else {
-		tool.RespInternalError(ctx)
+		tool.RespErrorWithDate(ctx, "不能删除他人评论")
 	}
 }
 
