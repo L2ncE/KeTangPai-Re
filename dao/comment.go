@@ -41,6 +41,7 @@ func SelectCommentByTopicId(topicId int) ([]model.Comment, error) {
 	return comments, nil
 }
 
+// DeleteComment 删除评论
 func DeleteComment(Id int) error {
 	sqlStr := `delete from comment where Id=?`
 	_, err := dB.Exec(sqlStr, Id)
@@ -50,6 +51,8 @@ func DeleteComment(Id int) error {
 	}
 	return err
 }
+
+// SelectNameById2 通过id找到用户名
 func SelectNameById2(commentId int) (string, error) {
 	var comment model.Comment
 
@@ -66,6 +69,7 @@ func SelectNameById2(commentId int) (string, error) {
 	return comment.Name, nil
 }
 
+// CommentLikes 评论点赞
 func CommentLikes(id int) error {
 	sqlStr := `update comment set Likes=Likes+1 where id = ?`
 	_, err := dB.Exec(sqlStr, id)
