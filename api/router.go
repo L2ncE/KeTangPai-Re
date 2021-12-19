@@ -41,6 +41,14 @@ func InitEngine() {
 		}
 	}
 
+	classroomGroup := engine.Group("/classroom")
+	{
+		classroomGroup.Use(auth)                                    //需要cookie
+		classroomGroup.POST("/", addClassRoom)                      //开启新课堂
+		classroomGroup.POST("/:classroom_id", deleteClassRoom)      //删除课堂
+		classroomGroup.POST("/:classroom_id/open", openClassRoom)   //开启课堂
+		classroomGroup.POST("/:classroom_id/close", closeClassRoom) //关闭课堂
+	}
 	err := engine.Run()
 	if err != nil {
 		return
