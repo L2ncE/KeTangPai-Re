@@ -40,7 +40,7 @@ func deleteClassRoom(ctx *gin.Context) {
 	classroomIdString := ctx.Param("classroom_id")
 	classroomId, err := strconv.Atoi(classroomIdString)
 	classroomNameString, _ := ctx.Get("username")
-	nameString, _ := service.GetNameById(classroomId)
+	nameString, _ := service.GetNameById3(classroomId)
 	//必须用户名相同,无法删除他人课堂
 	if classroomNameString == nameString {
 		if err != nil {
