@@ -8,4 +8,5 @@ type ClassRoom struct {
 	CreatorName  string
 	CreateTime   time.Time
 	LastOpenTime time.Time
+	Status       bool
 }
