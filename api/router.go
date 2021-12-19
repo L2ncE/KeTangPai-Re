@@ -49,6 +49,14 @@ func InitEngine() {
 		classroomGroup.POST("/:classroom_id/open", openClassRoom)   //开启课堂
 		classroomGroup.POST("/:classroom_id/close", closeClassRoom) //关闭课堂
 	}
+
+	homeworkGroup := engine.Group("/homework")
+	{
+		homeworkGroup.Use(auth)
+		homeworkGroup.POST("/", addHomework)                  //布置作业
+		homeworkGroup.DELETE("/:homework_id", deleteHomework) //删除作业
+	}
+
 	err := engine.Run()
 	if err != nil {
 		return
