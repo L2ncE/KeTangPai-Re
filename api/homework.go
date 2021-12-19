@@ -47,7 +47,7 @@ func deleteHomework(ctx *gin.Context) {
 	homeworkIdString := ctx.Param("homework_id") //输入评论id
 	homeworkId, err := strconv.Atoi(homeworkIdString)
 	homeworkNameString, _ := ctx.Get("username") //取用户名
-	nameString, _ := service.GetNameById2(homeworkId)
+	nameString, _ := service.GetNameById4(homeworkId)
 	//不能删除他人的评论,将用户名进行判断
 	if homeworkNameString == nameString {
 		if err != nil {
