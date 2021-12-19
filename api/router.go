@@ -57,6 +57,14 @@ func InitEngine() {
 		homeworkGroup.DELETE("/:homework_id", deleteHomework) //删除作业
 	}
 
+	uploadGroup := engine.Group("/upload")
+	{
+		uploadGroup.Use(auth)
+		//限制上传最大尺寸
+		engine.MaxMultipartMemory = 8 << 20
+		uploadGroup.POST("/", upload) //上传文件
+	}
+
 	err := engine.Run()
 	if err != nil {
 		return
