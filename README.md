@@ -91,3 +91,20 @@ CREATE TABLE `Comment`
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8mb4;
 ```
+
+*教室表*
+
+```mysql
+CREATE TABLE `ClassRoom`
+(
+    `Id`           BIGINT(20)                NOT NULL AUTO_INCREMENT,
+    `ClassName`    VARCHAR(20) DEFAULT '',
+    `CreatorName`  VARCHAR(20) DEFAULT '',
+    `CreateTime`   datetime    DEFAULT NULL,
+    `LastOpenTime` datetime    DEFAULT NULL,
+    `Status`       bool        DEFAULT FALSE NULL,
+    PRIMARY KEY (`Id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8mb4;
+```
