@@ -3,9 +3,10 @@ package model
 import "time"
 
 type Homework struct {
-	Id            int
-	Name          string
-	Context       string
-	PublisherName string
-	PublishTime   time.Time
+	Id          int
+	ClassRoomId int
+	Name        string
+	Context     string
+	PosterName  string
+	PostTime    time.Time
 }
