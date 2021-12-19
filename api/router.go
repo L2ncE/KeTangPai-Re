@@ -65,6 +65,11 @@ func InitEngine() {
 		uploadGroup.POST("/", upload) //上传文件
 	}
 
+	downloadGroup := engine.Group("/download")
+	{
+		downloadGroup.Use(auth)
+		downloadGroup.GET("/", download) //下载文件
+	}
 	err := engine.Run()
 	if err != nil {
 		return
