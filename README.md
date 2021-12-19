@@ -6,7 +6,7 @@
 
 - [x] **账号注册登录,更改密码**
 - [x] **创建课堂,删除课堂**
-- [ ] **布置作业,删除作业**
+- [x] **布置作业,删除作业**
 - [ ] **上传-下载课件资料**
 - [x] **发布话题-话题讨论**
 - [ ] **上课签到**
@@ -107,6 +107,22 @@ CREATE TABLE `ClassRoom`
     `CreateTime`   datetime    DEFAULT NULL,
     `LastOpenTime` datetime    DEFAULT NULL,
     `Status`       bool        DEFAULT FALSE NULL,
+    PRIMARY KEY (`Id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8mb4;
+```
+
+*作业表*
+
+```mysql
+CREATE TABLE `Homework`
+(
+    `Id`          BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `ClassRoomId` BIGINT(20) NOT NULL,
+    `Name`        VARCHAR(20)  DEFAULT '',
+    `Context`     VARCHAR(255) DEFAULT NULL,
+    `PostTime`    datetime     DEFAULT NULL,
     PRIMARY KEY (`Id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
