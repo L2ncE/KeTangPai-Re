@@ -87,6 +87,11 @@ func register(ctx *gin.Context) {
 	password := ctx.PostForm("password")
 	question := ctx.PostForm("question")
 	answer := ctx.PostForm("answer")
+	status := ctx.PostForm("status")
+	if status != "老师" && status != "学生" {
+		tool.RespErrorWithDate(ctx, "身份仅能为老师或学生")
+		return
+	}
 	//输入信息不能为空
 	if username != "" && password != "" && question != "" && answer != "" {
 		l1 := len([]rune(username))
