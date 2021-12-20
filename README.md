@@ -72,9 +72,9 @@ CREATE TABLE `topic`
     `Id`         BIGINT(20)             NOT NULL AUTO_INCREMENT,
     `Name`       VARCHAR(20)  DEFAULT '',
     `Context`    VARCHAR(255) DEFAULT NULL,
-    `PostTime`   datetime     DEFAULT NULL,
-    `UpdateTime` datetime     DEFAULT NULL,
-    `Likes`      bigint       default 0 null,
+    `PostTime`   DATETIME     DEFAULT NULL,
+    `UpdateTime` DATETIME     DEFAULT NULL,
+    `Likes`      BIGINT(20)   default 0 null,
     PRIMARY KEY (`Id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
@@ -90,8 +90,8 @@ CREATE TABLE `Comment`
     `TopicId`     BIGINT(20)             NOT NULL,
     `Name`        VARCHAR(20)  DEFAULT '',
     `Context`     VARCHAR(255) DEFAULT NULL,
-    `CommentTime` datetime     DEFAULT NULL,
-    `Likes`       bigint       default 0 null,
+    `CommentTime` DATETIME     DEFAULT NULL,
+    `Likes`       BIGINT(20)   default 0 null,
     PRIMARY KEY (`Id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
@@ -106,9 +106,9 @@ CREATE TABLE `ClassRoom`
     `Id`           BIGINT(20)                NOT NULL AUTO_INCREMENT,
     `ClassName`    VARCHAR(20) DEFAULT '',
     `CreatorName`  VARCHAR(20) DEFAULT '',
-    `CreateTime`   datetime    DEFAULT NULL,
-    `LastOpenTime` datetime    DEFAULT NULL,
-    `Status`       bool        DEFAULT FALSE NULL,
+    `CreateTime`   DATETIME    DEFAULT NULL,
+    `LastOpenTime` DATETIME    DEFAULT NULL,
+    `Status`       BOOL        DEFAULT FALSE NULL,
     PRIMARY KEY (`Id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
@@ -124,7 +124,7 @@ CREATE TABLE `Homework`
     `ClassRoomId` BIGINT(20) NOT NULL,
     `Name`        VARCHAR(20)  DEFAULT '',
     `Context`     VARCHAR(255) DEFAULT NULL,
-    `PostTime`    datetime     DEFAULT NULL,
+    `PostTime`    DATETIME     DEFAULT NULL,
     PRIMARY KEY (`Id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
