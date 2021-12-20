@@ -146,4 +146,5 @@ func signInClassRoom(ctx *gin.Context) {
 		tool.RespInternalError(ctx)
 		return
 	}
+	tool.RespSuccessful(ctx)
 }
