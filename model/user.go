@@ -7,4 +7,5 @@ type User struct {
 	Question        string
 	Answer          string
 	ClassroomIdSign int
+	Status          string
 }
