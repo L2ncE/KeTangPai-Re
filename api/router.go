@@ -78,6 +78,14 @@ func InitEngine() {
 		questionAnswerGroup.POST("/question", question) //课中提问
 		questionAnswerGroup.POST("/answer", answer)     //课中回答
 	}
+
+	gradeGroup := engine.Group("/grade")
+	{
+		gradeGroup.Use(auth)
+		gradeGroup.POST("/", addGrade)             //新增成绩
+		gradeGroup.POST("/:grade_id", changeGrade) //更新成绩
+	}
+
 	err := engine.Run()
 	if err != nil {
 		return
