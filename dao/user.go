@@ -36,8 +36,8 @@ func SelectUserByUsername(Name string) (model.User, error) {
 // Insert 注册时插入数据
 func Insert(user model.User) error {
 
-	sqlStr := "insert into user(Name,Password,Question,Answer)values (?,?,?,?)"
-	_, err := dB.Exec(sqlStr, user.Name, user.Password, user.Question, user.Answer)
+	sqlStr := "insert into user(Name,Password,Question,Answer,Status)values (?,?,?,?,?)"
+	_, err := dB.Exec(sqlStr, user.Name, user.Password, user.Question, user.Answer, user.Status)
 	if err != nil {
 		fmt.Printf("insert failed, err:%v\n", err)
 		return err
