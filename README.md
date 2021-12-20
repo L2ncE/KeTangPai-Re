@@ -51,11 +51,13 @@ CREATE DATABASE test
 ```mysql
 CREATE TABLE `User`
 (
-    `Id`       BIGINT(20) NOT NULL AUTO_INCREMENT,
-    `Name`     VARCHAR(20)  DEFAULT '',
-    `Password` VARCHAR(20)  DEFAULT '123456',
-    `Question` VARCHAR(255) DEFAULT NULL,
-    `Answer`   VARCHAR(255) DEFAULT NULL,
+    `Id`          BIGINT(20)                 NOT NULL AUTO_INCREMENT,
+    `Name`        VARCHAR(20)  DEFAULT '',
+    `Password`    VARCHAR(20)  DEFAULT '123456',
+    `Question`    VARCHAR(255) DEFAULT NULL,
+    `Answer`      VARCHAR(255) DEFAULT NULL,
+    `ClassroomId` BIGINT(20)   DEFAULT NULL,
+    `Sign`        BOOL         DEFAULT FALSE NULL,
     PRIMARY KEY (`Id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
