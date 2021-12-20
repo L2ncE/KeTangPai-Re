@@ -57,6 +57,7 @@ CREATE TABLE `User`
     `Question`        VARCHAR(255) DEFAULT NULL,
     `Answer`          VARCHAR(255) DEFAULT NULL,
     `ClassroomIdSign` BIGINT(20)   DEFAULT NULL,
+    `Status`          VARCHAR(20)  DEFAULT NULL,
     PRIMARY KEY (`Id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
@@ -135,12 +136,14 @@ CREATE TABLE `Homework`
 ```mysql
 CREATE TABLE `Grade`
 (
-    `Id`      BIGINT(20) NOT NULL AUTO_INCREMENT,
-    `Name`    VARCHAR(20) DEFAULT '',
-    `Subject` VARCHAR(20) DEFAULT NULL,
-    `Grade`   BIGINT(20)  DEFAULT NULL,
-    CONSTRAINT kf_id
-        FOREIGN KEY (Id) REFERENCES user (Id)
+    `Id`         BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `Name`       VARCHAR(20) DEFAULT '',
+    `Subject`    VARCHAR(20) DEFAULT NULL,
+    `Grade`      BIGINT(20)  DEFAULT NULL,
+    `Poster`     VARCHAR(20) DEFAULT '',
+    `PostTime`   DATETIME    DEFAULT NULL,
+    `UpdateTime` DATETIME    DEFAULT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8mb4;
