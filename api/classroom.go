@@ -128,3 +128,10 @@ func closeClassRoom(ctx *gin.Context) {
 		tool.RespErrorWithDate(ctx, "不能关闭他人课堂")
 	}
 }
+
+// signInClassRoom 课堂签到
+func signInClassRoom(ctx *gin.Context) {
+	classroomIdString := ctx.Param("classroom_id")
+	classroomId, err := strconv.Atoi(classroomIdString)
+
+}
