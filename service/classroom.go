@@ -33,3 +33,9 @@ func CloseClassRoom(status bool, classroomId int) error {
 	err := dao.CloseClassRoom(status, classroomId)
 	return err
 }
+
+// SignInClassroom 教室签到
+func SignInClassroom(id int, name string) error {
+	err := dao.SignInClassroom(id, name)
+	return err
+}
