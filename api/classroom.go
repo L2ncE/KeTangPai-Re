@@ -117,7 +117,7 @@ func closeClassRoom(ctx *gin.Context) {
 			tool.RespErrorWithDate(ctx, "classroom_id格式有误")
 			return
 		}
-		err = service.OpenClassRoom(false, classroomId)
+		err = service.CloseClassRoom(false, classroomId)
 		if err != nil {
 			fmt.Println("close classroom err: ", err)
 			tool.RespInternalError(ctx)
@@ -133,5 +133,17 @@ func closeClassRoom(ctx *gin.Context) {
 func signInClassRoom(ctx *gin.Context) {
 	classroomIdString := ctx.Param("classroom_id")
 	classroomId, err := strconv.Atoi(classroomIdString)
-
+	if err != nil {
+		fmt.Println("classroom id string to int err: ", err)
+		tool.RespErrorWithDate(ctx, "classroom_id格式有误")
+		return
+	}
+	iUsername, _ := ctx.Get("username")
+	username := iUsername.(string)
+	err = service.SignInClassroom(classroomId, username)
+	if err != nil {
+		fmt.Println("sign classroom err: ", err)
+		tool.RespInternalError(ctx)
+		return
+	}
 }
