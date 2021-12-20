@@ -48,6 +48,7 @@ func InitEngine() {
 		classroomGroup.DELETE("/:classroom_id", deleteClassRoom)    //删除课堂
 		classroomGroup.POST("/:classroom_id/open", openClassRoom)   //开启课堂
 		classroomGroup.POST("/:classroom_id/close", closeClassRoom) //关闭课堂
+		classroomGroup.POST("/:classroom_id/sign", signInClassRoom) //课堂签到
 	}
 
 	homeworkGroup := engine.Group("/homework")
