@@ -129,3 +129,19 @@ CREATE TABLE `Homework`
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8mb4;
 ```
+
+*成绩表*
+
+```mysql
+CREATE TABLE `Grade`
+(
+    `Id`      BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `Name`    VARCHAR(20) DEFAULT '',
+    `Subject` VARCHAR(20) DEFAULT NULL,
+    `Grade`   BIGINT(20)  DEFAULT NULL,
+    CONSTRAINT kf_id
+        FOREIGN KEY (Id) REFERENCES user (Id)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8mb4;
+```
