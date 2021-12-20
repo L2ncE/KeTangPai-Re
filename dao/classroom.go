@@ -61,3 +61,14 @@ func CloseClassRoom(status bool, id int) error {
 	}
 	return err
 }
+
+// SignInClassroom 教室签到
+func SignInClassroom(id int, name string) error {
+	sqlStr := `update user set ClassroomIdSign =? where Name = ?`
+	_, err := dB.Exec(sqlStr, id, name)
+	if err != nil {
+		fmt.Printf("update failed, err:%v\n", err)
+		return err
+	}
+	return err
+}
