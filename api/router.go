@@ -71,6 +71,13 @@ func InitEngine() {
 		downloadGroup.Use(auth)
 		downloadGroup.GET("/", download) //下载文件
 	}
+
+	questionAnswerGroup := engine.Group("/q&a")
+	{
+		questionAnswerGroup.Use(auth)
+		questionAnswerGroup.POST("/question", question) //课中提问
+		questionAnswerGroup.POST("/answer", answer)     //课中回答
+	}
 	err := engine.Run()
 	if err != nil {
 		return
