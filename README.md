@@ -9,7 +9,7 @@
 - [x] **布置作业,删除作业**
 - [x] **上传-下载课件资料**
 - [x] **发布话题-话题讨论**
-- [ ] **上课签到**
+- [x] **上课签到**
 - [ ] **课中提问(学生or老师)和回答（抢答or抽答）**
 - [ ] **成绩管理**
 - [x] 项目说明文档
@@ -51,13 +51,12 @@ CREATE DATABASE test
 ```mysql
 CREATE TABLE `User`
 (
-    `Id`          BIGINT(20)                 NOT NULL AUTO_INCREMENT,
-    `Name`        VARCHAR(20)  DEFAULT '',
-    `Password`    VARCHAR(20)  DEFAULT '123456',
-    `Question`    VARCHAR(255) DEFAULT NULL,
-    `Answer`      VARCHAR(255) DEFAULT NULL,
-    `ClassroomId` BIGINT(20)   DEFAULT NULL,
-    `Sign`        BOOL         DEFAULT FALSE NULL,
+    `Id`              BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `Name`            VARCHAR(20)  DEFAULT '',
+    `Password`        VARCHAR(20)  DEFAULT '123456',
+    `Question`        VARCHAR(255) DEFAULT NULL,
+    `Answer`          VARCHAR(255) DEFAULT NULL,
+    `ClassroomIdSign` BIGINT(20)   DEFAULT NULL,
     PRIMARY KEY (`Id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
