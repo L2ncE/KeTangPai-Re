@@ -1,9 +1,11 @@
 package model
 
 type User struct {
-	Id       int
-	Name     string
-	Password string
-	Question string
-	Answer   string
+	Id          int
+	Name        string
+	Password    string
+	Question    string
+	Answer      string
+	ClassroomId int
+	Sign        int
 }
