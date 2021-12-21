@@ -55,3 +55,9 @@ func SelectAnswerByUsername(username string) string {
 	answer := dao.SelectAnswerByUsername(username)
 	return answer
 }
+
+// SelectStatusByUsername 通过昵称查找身份服务
+func SelectStatusByUsername(username string) string {
+	status := dao.SelectStatusByName(username)
+	return status
+}
