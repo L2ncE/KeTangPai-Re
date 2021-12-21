@@ -12,12 +12,6 @@ import (
 
 // addGrade 添加成绩
 func addGrade(ctx *gin.Context) {
-	iStatus, _ := ctx.Get("status") //得到身份
-	status, _ := iStatus.(string)
-	if status == "学生" {
-		tool.RespErrorWithDate(ctx, "学生不能自己上传成绩")
-		return
-	}
 	iUsername, _ := ctx.Get("username") //得到用户名
 	posterName := iUsername.(string)
 	Name := ctx.PostForm("name")
@@ -45,12 +39,6 @@ func addGrade(ctx *gin.Context) {
 
 // changeGrade 更改成绩
 func changeGrade(ctx *gin.Context) {
-	iStatus, _ := ctx.Get("status") //得到身份
-	status, _ := iStatus.(string)
-	if status == "学生" {
-		tool.RespErrorWithDate(ctx, "学生不能自己上传成绩")
-		return
-	}
 	SNewGrade := ctx.PostForm("newGrade")
 	newGrade, _ := strconv.Atoi(SNewGrade)
 	iGradeId := ctx.Param("grade_id")
