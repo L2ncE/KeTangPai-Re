@@ -21,7 +21,7 @@ func InsertGrade(grade model.Grade) error {
 // ChangeGrade 修改成绩
 func ChangeGrade(id int, newGrade int, time time.Time) error {
 	sqlStr := `update grade set Grade=?,UpdateTime=? where id = ?`
-	_, err := dB.Exec(sqlStr, id, newGrade, time)
+	_, err := dB.Exec(sqlStr, newGrade, time, id)
 	if err != nil {
 		fmt.Printf("update failed, err:%v\n", err)
 		return err
