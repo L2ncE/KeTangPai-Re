@@ -103,6 +103,7 @@ func register(ctx *gin.Context) {
 					Password: password,
 					Question: question,
 					Answer:   answer,
+					Status:   status,
 				}
 
 				flag, err := service.IsRepeatUsername(username)
