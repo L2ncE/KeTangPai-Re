@@ -52,3 +52,11 @@ func SelectAnswerByUsername(Name string) string {
 	dB.QueryRow(sqlStr, Name).Scan(&user.Answer)
 	return user.Answer
 }
+
+// SelectStatusByName 通过用户名查身份
+func SelectStatusByName(Name string) string {
+	user := model.User{}
+	sqlStr := `select Status from user where Name=?;`
+	dB.QueryRow(sqlStr, Name).Scan(&user.Status)
+	return user.Status
+}
