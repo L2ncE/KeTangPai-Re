@@ -155,6 +155,11 @@ func topicLikes(ctx *gin.Context) {
 
 // deleteTopic0 管理员删除话题
 func deleteTopic0(ctx *gin.Context) {
+	IUsername, _ := ctx.Get("username")
+	username := IUsername.(string)
+	if service.SelectStatusByUsername(username) != "管理员" {
+		tool.RespErrorWithDate(ctx, "您不是管理员")
+	}
 	topicIdString := ctx.Param("topic_id")
 	topicId, err := strconv.Atoi(topicIdString)
 	//无需判断用户名
