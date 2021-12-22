@@ -19,11 +19,12 @@ func InitEngine() {
 	topicGroup := engine.Group("/topic")
 	{
 		{
-			topicGroup.Use(auth)                            //需要cookie
-			topicGroup.POST("/", addTopic)                  //发布新话题
-			topicGroup.POST("/:topic_id", changeTopic)      //修改话题
-			topicGroup.DELETE("/:topic_id", deleteTopic)    //删除话题
-			topicGroup.POST("/:topic_id/likes", topicLikes) //给话题点赞
+			topicGroup.Use(auth)                                //需要cookie
+			topicGroup.POST("/", addTopic)                      //发布新话题
+			topicGroup.POST("/:topic_id", changeTopic)          //修改话题
+			topicGroup.DELETE("/:topic_id", deleteTopic)        //删除话题
+			topicGroup.POST("/:topic_id/likes", topicLikes)     //给话题点赞
+			topicGroup.DELETE("/:topic_id/admin", deleteTopic0) //管理员删除话题
 		}
 		topicGroup.GET("/", briefTopics)          //查看全部话题概略
 		topicGroup.GET("/:topic_id", topicDetail) //查看一条话题详细信息和其下属评论
@@ -33,11 +34,11 @@ func InitEngine() {
 	{
 		commentGroup.POST("/anonymity", addCommentAnonymity) //匿名评论
 		{
-			commentGroup.Use(auth)                             //需要cookie
-			commentGroup.POST("/", addComment)                 //发送评论
-			commentGroup.DELETE("/:comment_id", deleteComment) //删除评论
-
-			commentGroup.POST("/:comment_id/likes", commentLikes) //给评论点赞
+			commentGroup.Use(auth)                                    //需要cookie
+			commentGroup.POST("/", addComment)                        //发送评论
+			commentGroup.DELETE("/:comment_id", deleteComment)        //删除评论
+			commentGroup.DELETE("/:comment_id/admin", deleteComment0) //管理员删除评论
+			commentGroup.POST("/:comment_id/likes", commentLikes)     //给评论点赞
 		}
 	}
 
