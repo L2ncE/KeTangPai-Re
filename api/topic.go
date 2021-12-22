@@ -159,6 +159,7 @@ func deleteTopic0(ctx *gin.Context) {
 	username := IUsername.(string)
 	if service.SelectStatusByUsername(username) != "管理员" {
 		tool.RespErrorWithDate(ctx, "您不是管理员")
+		return
 	}
 	topicIdString := ctx.Param("topic_id")
 	topicId, err := strconv.Atoi(topicIdString)
