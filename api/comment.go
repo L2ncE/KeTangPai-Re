@@ -113,6 +113,11 @@ func commentLikes(ctx *gin.Context) {
 
 // deleteComment0 管理员删除评论 不必再进行用户名判断
 func deleteComment0(ctx *gin.Context) {
+	IUsername, _ := ctx.Get("username")
+	username := IUsername.(string)
+	if service.SelectStatusByUsername(username) != "管理员" {
+		tool.RespErrorWithDate(ctx, "您不是管理员")
+	}
 	commentIdString := ctx.Param("comment_id")
 	commentId, err := strconv.Atoi(commentIdString)
 	if err != nil {
