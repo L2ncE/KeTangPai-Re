@@ -117,6 +117,7 @@ func deleteComment0(ctx *gin.Context) {
 	username := IUsername.(string)
 	if service.SelectStatusByUsername(username) != "管理员" {
 		tool.RespErrorWithDate(ctx, "您不是管理员")
+		return
 	}
 	commentIdString := ctx.Param("comment_id")
 	commentId, err := strconv.Atoi(commentIdString)
