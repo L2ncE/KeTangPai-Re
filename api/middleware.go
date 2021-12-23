@@ -16,3 +16,7 @@ func auth(ctx *gin.Context) {
 	ctx.Set("username", username)
 	ctx.Next()
 }
+
+func JWTAuth(ctx *gin.Context) {
+
+}

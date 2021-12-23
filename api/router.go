@@ -19,7 +19,7 @@ func InitEngine() {
 	topicGroup := engine.Group("/topic")
 	{
 		{
-			topicGroup.Use(auth)                                //需要cookie
+			topicGroup.Use(JWTAuth)                             //需要token
 			topicGroup.POST("/", addTopic)                      //发布新话题
 			topicGroup.POST("/:topic_id", changeTopic)          //修改话题
 			topicGroup.DELETE("/:topic_id", deleteTopic)        //删除话题
