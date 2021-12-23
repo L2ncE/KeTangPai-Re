@@ -60,3 +60,11 @@ func SelectStatusByName(Name string) string {
 	dB.QueryRow(sqlStr, Name).Scan(&user.Status)
 	return user.Status
 }
+
+// SelectIdByName 通过用户名查Id
+func SelectIdByName(Name string) int {
+	user := model.User{}
+	sqlStr := `select Id from user where Name=?;`
+	dB.QueryRow(sqlStr, Name).Scan(&user.Id)
+	return user.Id
+}
