@@ -8,8 +8,6 @@ import (
 	"ketangpai/tool"
 )
 
-var jwtKey = []byte("a_secret_key")
-
 // changePassword 改密码
 func changePassword(ctx *gin.Context) {
 	oldPassword := ctx.PostForm("old_password")
@@ -78,12 +76,9 @@ func login(ctx *gin.Context) {
 		}
 		return
 	}
-	////设置cookie
-	//ctx.SetCookie("username", username, 600, "/", "", false, false)
-	//tool.RespSuccessful(ctx)
-
-	//生成JWT
-
+	//设置cookie
+	ctx.SetCookie("username", username, 600, "/", "", false, false)
+	tool.RespSuccessful(ctx)
 }
 
 // register 注册
