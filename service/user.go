@@ -61,3 +61,9 @@ func SelectStatusByUsername(username string) string {
 	status := dao.SelectStatusByName(username)
 	return status
 }
+
+// SelectIdByUsername 通过昵称查找Id服务
+func SelectIdByUsername(username string) int {
+	id := dao.SelectIdByName(username)
+	return id
+}
