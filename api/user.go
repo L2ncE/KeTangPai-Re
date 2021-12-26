@@ -2,10 +2,12 @@ package api
 
 import (
 	"fmt"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"ketangpai/model"
 	"ketangpai/service"
 	"ketangpai/tool"
+	"time"
 )
 
 // changePassword 改密码
@@ -76,9 +78,26 @@ func login(ctx *gin.Context) {
 		}
 		return
 	}
-	//设置cookie
-	ctx.SetCookie("username", username, 600, "/", "", false, false)
-	tool.RespSuccessful(ctx)
+	////设置cookie
+	//ctx.SetCookie("username", username, 600, "/", "", false, false)
+	//tool.RespSuccessful(ctx)
+
+	//jwt
+	c := model.MyClaims{
+		Username: username,
+		Password: password,
+		StandardClaims: jwt.StandardClaims{
+			NotBefore: time.Now().Unix() - 60,
+			ExpiresAt: time.Now().Unix() + 7200,
+			Issuer:    "YuanXinHao",
+		},
+	}
+	t := jwt.NewWithClaims(jwt.SigningMethodHS256, c)
+	s, err := t.SignedString(mySigningKey)
+	if err != nil {
+		tool.RespInternalError(ctx)
+	}
+	tool.RespSuccessfulWithDate(ctx, s)
 }
 
 // register 注册

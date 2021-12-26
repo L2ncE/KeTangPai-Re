@@ -12,14 +12,14 @@ func InitEngine() {
 
 	userGroup := engine.Group("/user")
 	{
-		userGroup.Use(auth)                         //需要cookie
+		userGroup.Use(JWTAuth)                      //需要token
 		userGroup.POST("/password", changePassword) //修改密码
 	}
 
 	topicGroup := engine.Group("/topic")
 	{
 		{
-			topicGroup.Use(auth)                                //需要token
+			topicGroup.Use(JWTAuth)                             //需要token
 			topicGroup.POST("/", addTopic)                      //发布新话题
 			topicGroup.POST("/:topic_id", changeTopic)          //修改话题
 			topicGroup.DELETE("/:topic_id", deleteTopic)        //删除话题
@@ -34,7 +34,7 @@ func InitEngine() {
 	{
 		commentGroup.POST("/anonymity", addCommentAnonymity) //匿名评论
 		{
-			commentGroup.Use(auth)                                    //需要cookie
+			commentGroup.Use(JWTAuth)                                 //需要token
 			commentGroup.POST("/", addComment)                        //发送评论
 			commentGroup.DELETE("/:comment_id", deleteComment)        //删除评论
 			commentGroup.DELETE("/:comment_id/admin", deleteComment0) //管理员删除评论
@@ -44,7 +44,7 @@ func InitEngine() {
 
 	classroomGroup := engine.Group("/classroom")
 	{
-		classroomGroup.Use(auth)                                    //需要cookie
+		classroomGroup.Use(JWTAuth)                                 //需要token
 		classroomGroup.POST("/", addClassRoom)                      //开启新课堂
 		classroomGroup.DELETE("/:classroom_id", deleteClassRoom)    //删除课堂
 		classroomGroup.POST("/:classroom_id/open", openClassRoom)   //开启课堂
@@ -54,14 +54,14 @@ func InitEngine() {
 
 	homeworkGroup := engine.Group("/homework")
 	{
-		homeworkGroup.Use(auth)
+		homeworkGroup.Use(JWTAuth)                            //需要token
 		homeworkGroup.POST("/", addHomework)                  //布置作业
 		homeworkGroup.DELETE("/:homework_id", deleteHomework) //删除作业
 	}
 
 	uploadGroup := engine.Group("/upload")
 	{
-		uploadGroup.Use(auth)
+		homeworkGroup.Use(JWTAuth) //需要token
 		//限制上传最大尺寸
 		engine.MaxMultipartMemory = 8 << 20
 		uploadGroup.POST("/", upload) //上传文件
@@ -69,20 +69,20 @@ func InitEngine() {
 
 	downloadGroup := engine.Group("/download")
 	{
-		downloadGroup.Use(auth)
+		downloadGroup.Use(JWTAuth)       //需要token
 		downloadGroup.GET("/", download) //下载文件
 	}
 
 	questionAnswerGroup := engine.Group("/q&a")
 	{
-		questionAnswerGroup.Use(auth)
+		questionAnswerGroup.Use(JWTAuth)                //需要token
 		questionAnswerGroup.POST("/question", question) //课中提问
 		questionAnswerGroup.POST("/answer", answer)     //课中回答
 	}
 
 	gradeGroup := engine.Group("/grade")
 	{
-		gradeGroup.Use(auth)
+		gradeGroup.Use(JWTAuth)                    //需要token
 		gradeGroup.POST("/", addGrade)             //新增成绩
 		gradeGroup.POST("/:grade_id", changeGrade) //更新成绩
 	}
