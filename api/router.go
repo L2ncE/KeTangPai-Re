@@ -87,6 +87,12 @@ func InitEngine() {
 		gradeGroup.POST("/:grade_id", changeGrade) //更新成绩
 	}
 
+	rankGroup := engine.Group("/rank")
+	{
+		rankGroup.Use(JWTAuth)
+		rankGroup.GET("/", rank) //获取排名
+	}
+
 	err := engine.Run()
 	if err != nil {
 		return
