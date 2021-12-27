@@ -62,8 +62,19 @@ func SelectStatusByUsername(username string) string {
 	return status
 }
 
-// SelectIdByUsername 通过昵称查找Id服务
-func SelectIdByUsername(username string) int {
-	id := dao.SelectIdByName(username)
-	return id
+//// SelectIdByUsername 通过昵称查找Id服务
+//func SelectIdByUsername(username string) int {
+//	id := dao.SelectIdByName(username)
+//	return id
+//}
+
+// SpeechNum 回复加一
+func SpeechNum(name string) error {
+	err := dao.SpeechNum(name)
+	return err
+}
+
+// GetRank 得到排名
+func GetRank() ([]model.UserRank, error) {
+	return dao.Rank()
 }
