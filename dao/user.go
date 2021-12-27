@@ -68,3 +68,37 @@ func SelectIdByName(Name string) int {
 	dB.QueryRow(sqlStr, Name).Scan(&user.Id)
 	return user.Id
 }
+
+// SpeechNum 发言加一
+func SpeechNum(name string) error {
+	sqlStr := `update user set SpeechNum=SpeechNum+1 where Name = ?`
+	_, err := dB.Exec(sqlStr, name)
+	if err != nil {
+		fmt.Printf("update failed, err:%v\n", err)
+		return err
+	}
+	return err
+}
+
+// Rank 排名
+func Rank() ([]model.UserRank, error) {
+	var users []model.UserRank
+	rows, err := dB.Query("SELECT Name,SpeechNum FROM user order by SpeechNum desc")
+	if err != nil {
+		return nil, err
+	}
+
+	defer rows.Close()
+	for rows.Next() {
+		var user model.UserRank
+
+		err = rows.Scan(&user.Name, &user.SpeechNum)
+		if err != nil {
+			return nil, err
+		}
+
+		users = append(users, user)
+	}
+
+	return users, nil
+}
