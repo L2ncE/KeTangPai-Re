@@ -60,25 +60,6 @@ func deleteClassRoom(ctx *gin.Context) {
 	}
 }
 
-// deleteClassRoom0 管理员删除课堂
-func deleteClassRoom0(ctx *gin.Context) {
-	classroomIdString := ctx.Param("classroom_id")
-	classroomId, err := strconv.Atoi(classroomIdString)
-	//无需判断用户名
-	if err != nil {
-		fmt.Println("classroom id string to int err: ", err)
-		tool.RespErrorWithDate(ctx, "classroom_id格式有误")
-		return
-	}
-	err = service.DeleteClassRoom(classroomId)
-	if err != nil {
-		fmt.Println("delete classroom err: ", err)
-		tool.RespInternalError(ctx)
-		return
-	}
-	tool.RespSuccessful(ctx)
-}
-
 // openClassRoom 开启课堂
 func openClassRoom(ctx *gin.Context) {
 	classroomIdString := ctx.Param("classroom_id")
