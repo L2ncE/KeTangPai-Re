@@ -158,3 +158,14 @@ func register(ctx *gin.Context) {
 		return
 	}
 }
+
+func rank(ctx *gin.Context) {
+	ranks, err := service.GetRank()
+	if err != nil {
+		fmt.Println("get rank err: ", err)
+		tool.RespInternalError(ctx)
+		return
+	}
+
+	tool.RespSuccessfulWithDate(ctx, ranks)
+}
