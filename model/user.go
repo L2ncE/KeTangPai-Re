@@ -10,3 +10,8 @@ type User struct {
 	SpeechNum       int
 	Status          string
 }
+
+type UserRank struct {
+	Name      string `json:"name"`
+	SpeechNum int    `json:"speechNum"`
+}
