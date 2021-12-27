@@ -2,8 +2,7 @@
 
 ### 前言
 
-花了不少时间搞这个考核项目,没有所有功能都完美实现,很多东西都不会也只有现学 ,万幸最后还是实现了不少功能,
-GitHub上的commit记录也超过了百条,也算是对得起自己。
+花了不少时间搞这个考核项目,没有所有功能都完美实现,很多东西都不会也只有现学 ,万幸最后还是实现了不少功能, GitHub上的commit记录也超过了百条,也算是对得起自己。
 
 ### 功能列表
 
@@ -29,21 +28,15 @@ GitHub上的commit记录也超过了百条,也算是对得起自己。
 18. 管理员系统,能够直接删除话题与话题讨论以及教室
 19. 随时可以打开或关闭课堂
 20. 对学生、老师进行权限管理，实现多对一关联关系
-21. 对题目自动改错给分，选填给出标准答案自动改错即可
-22. 创建题库，可随机生成试卷
-23. 弹幕，可参考WS
-24. 上课发言热榜，建议使用redis
-25. 资料上传时实现断点续传和秒传
-26. 部署，建议使用docker
-27. RPC和MQ
-28. ~~高并发~~(不确定)
+21. 上课发言热榜，建议使用redis
+22. ~~高并发~~(不确定)
 
 ### 功能介绍与实现思路
+
 #### 1.账号注册登录,更改密码
 
-①注册就将输入的数据,用户名密码等post到数据库中,并将输入的用户名与已有的用户名进行比对,不能重复,同时限制用户名与密码的长度。 
-②登录时输入用户名与密码,进入数据库中进行比对,若不同则输入密保,密保正确则可以更换密码,若错误则登陆失败。 
-③更换密码需要在登录后重新输入老密码,并输入一串新的密码,在通过密码验证与长度限制验证后就将数据库中的密码所更换。
+①注册就将输入的数据,用户名密码等post到数据库中,并将输入的用户名与已有的用户名进行比对,不能重复,同时限制用户名与密码的长度。
+②登录时输入用户名与密码,进入数据库中进行比对,若不同则输入密保,密保正确则可以更换密码,若错误则登陆失败。 ③更换密码需要在登录后重新输入老密码,并输入一串新的密码,在通过密码验证与长度限制验证后就将数据库中的密码所更换。
 
 #### 2.创建课堂,删除课堂
 
@@ -124,13 +117,14 @@ CREATE DATABASE test;
 ```mysql
 CREATE TABLE `User`
 (
-    `Id`              BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `Id`              BIGINT(20)             NOT NULL AUTO_INCREMENT,
     `Name`            VARCHAR(20)  DEFAULT '',
     `Password`        VARCHAR(20)  DEFAULT '123456',
     `Question`        VARCHAR(255) DEFAULT NULL,
     `Answer`          VARCHAR(255) DEFAULT NULL,
     `ClassroomIdSign` BIGINT(20)   DEFAULT NULL,
     `Status`          VARCHAR(20)  DEFAULT NULL,
+    `SpeechNum`       BIGINT(20)   DEFAULT 0 NULL,
     PRIMARY KEY (`Id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
@@ -147,7 +141,7 @@ CREATE TABLE `topic`
     `Context`    VARCHAR(255) DEFAULT NULL,
     `PostTime`   DATETIME     DEFAULT NULL,
     `UpdateTime` DATETIME     DEFAULT NULL,
-    `Likes`      BIGINT(20)   default 0 null,
+    `Likes`      BIGINT(20)   DEFAULT 0 NULL,
     PRIMARY KEY (`Id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
@@ -164,7 +158,7 @@ CREATE TABLE `Comment`
     `Name`        VARCHAR(20)  DEFAULT '',
     `Context`     VARCHAR(255) DEFAULT NULL,
     `CommentTime` DATETIME     DEFAULT NULL,
-    `Likes`       BIGINT(20)   default 0 null,
+    `Likes`       BIGINT(20)   DEFAULT 0 NULL,
     PRIMARY KEY (`Id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
