@@ -3,6 +3,7 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"ketangpai/model"
+	"ketangpai/service"
 	"ketangpai/tool"
 	"time"
 )
@@ -16,6 +17,11 @@ func question(ctx *gin.Context) {
 		Context:  question,
 		PostTime: time.Now(),
 	}
+	err := service.SpeechNum(username)
+	if err != nil {
+		tool.RespInternalError(ctx)
+		return
+	}
 	tool.RespSuccessfulWithDate(ctx, QuestionDetail)
 }
 
@@ -28,6 +34,11 @@ func answer(ctx *gin.Context) {
 		Name:     username,
 		Context:  answer,
 		PostTime: time.Now(),
+	}
+	err := service.SpeechNum(username)
+	if err != nil {
+		tool.RespInternalError(ctx)
+		return
 	}
 	tool.RespSuccessfulWithDate(ctx, AnswerDetail)
 }
