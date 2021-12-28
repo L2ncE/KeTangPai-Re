@@ -65,7 +65,7 @@ func openClassRoom(ctx *gin.Context) {
 	classroomIdString := ctx.Param("classroom_id")
 	classroomId, err := strconv.Atoi(classroomIdString)
 	classroomNameString, _ := ctx.Get("username")
-	nameString, _ := service.GetNameById(classroomId)
+	nameString, _ := service.GetNameById3(classroomId)
 	//必须用户名相同,无法开启他人课堂
 	if classroomNameString == nameString {
 		if err != nil {
@@ -90,7 +90,7 @@ func closeClassRoom(ctx *gin.Context) {
 	classroomIdString := ctx.Param("classroom_id")
 	classroomId, err := strconv.Atoi(classroomIdString)
 	classroomNameString, _ := ctx.Get("username")
-	nameString, _ := service.GetNameById(classroomId)
+	nameString, _ := service.GetNameById3(classroomId)
 	//必须用户名相同,无法关闭他人课堂
 	if classroomNameString == nameString {
 		if err != nil {
