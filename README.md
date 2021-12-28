@@ -2,7 +2,8 @@
 
 ### 前言😎
 
-花了不少时间搞这个考核项目,但是临近期末,不能将所有空闲时间都投入到里面,很多功能都不是它的最优解,例如排行榜用redis在人数更多时效率会高不少,但是官方文档和源码都没怎么看明白。很多东西都不会也只有现学 ,万幸最后还是实现了不少功能, 学习到了不少新知识,GitHub上的commit记录也超过了150条,算是收获满满了。
+花了不少时间搞这个考核项目,但是临近期末,不能将所有空闲时间都投入到里面,很多功能都不是它的最优解,例如排行榜用redis在人数更多时效率会高不少,但是官方文档和源码都没怎么看明白。很多东西都不会也只有现学 ,万幸最后还是实现了不少功能,
+学习到了不少新知识,GitHub上的commit记录也超过了150条,算是收获满满了。
 
 ### 功能列表🤣
 
@@ -226,6 +227,7 @@ CREATE TABLE `Homework`
 (
     `Id`          BIGINT(20) NOT NULL AUTO_INCREMENT,
     `ClassRoomId` BIGINT(20) NOT NULL,
+    `PosterName`  VARCHAR(20)  DEFAULT NULL,
     `Name`        VARCHAR(20)  DEFAULT '',
     `Context`     VARCHAR(255) DEFAULT NULL,
     `PostTime`    DATETIME     DEFAULT NULL,
